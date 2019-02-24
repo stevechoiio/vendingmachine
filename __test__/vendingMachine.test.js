@@ -20,21 +20,26 @@ describe("Vending Machine", () => {
           "Insufficient fund"
         );
       });
+      it("machine doesn't have enough coin stock for change", () => {
+        expect(DefaultVendingMachine.buy("C1", 12320)).toEqual(
+          "Insufficient change"
+        );
+      });
     });
     describe("can buy with", () => {
       it("should dispense with no change", () => {
         expect(DefaultVendingMachine.buy("A2", 2.45)).toEqual(
-          "Dispending Diet Coca-Cola"
+          "Dispending Fat Coca-Cola"
         );
       });
       it("should dispense with one coin", () => {
         expect(DefaultVendingMachine.buy("A2", 2.55)).toEqual(
-          "Dispending Diet Coca-Cola with 1 dimes back as change"
+          "Dispending Fat Coca-Cola with 1 dimes back as change"
         );
       });
       it("should dispense with multiple coins", () => {
         expect(DefaultVendingMachine.buy("A2", 4.55)).toEqual(
-          "Dispending Diet Coca-Cola with 8 quarters, 1 dimes back as change"
+          "Dispending Fat Coca-Cola with 8 quarters, 1 dimes back as change"
         );
       });
     });
@@ -49,7 +54,7 @@ describe("Vending Machine", () => {
       });
       it("should be able to restock and change the quantity", () => {
         expect(DefaultVendingMachine.restockCoin("quarters", 121)).toEqual(
-          "Restocked!"
+          "Restocked 121 quarters"
         );
         expect(DefaultVendingMachine.coinStock.quarters).toEqual(151);
       });
@@ -59,14 +64,14 @@ describe("Vending Machine", () => {
     describe("can't restock item", () => {
       it("should be invalid item code", () => {
         expect(DefaultVendingMachine.restockItem("A1231", 32)).toEqual(
-          "Itemcode invalid"
+          "Invalid itemcode"
         );
       });
     });
     describe("can restock item", () => {
       it("should add stock", () => {
         expect(DefaultVendingMachine.restockItem("A1", 1)).toEqual(
-          "Added stock!"
+          "Restocked 1 Cola-Coca"
         );
         expect(DefaultVendingMachine.itemStock["A1"].stock).toEqual(1);
       });

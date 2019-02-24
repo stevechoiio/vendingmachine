@@ -1,4 +1,4 @@
-const smallestChange = (change, coinStock) => {
+const smallestChange = change => {
   let remainder = change * 100;
   let result = [];
   if (Math.floor(remainder / 25)) {
@@ -20,6 +20,22 @@ const smallestChange = (change, coinStock) => {
   return result.join(", ");
 };
 
+const checkCoinStock = (change, coinStock) => {
+  let remainder = change * 100;
+  if (Math.floor(remainder / 25) <= coinStock["quarters"]) {
+    let quarters = Math.floor(remainder / 25);
+    remainder -= 25 * quarters;
+  }
+  if (Math.floor(remainder / 10) <= coinStock["dimes"]) {
+    let dimes = Math.floor(remainder / 10);
+    remainder -= 10 * dimes;
+  }
+  if (Math.floor(remainder / 5) <= coinStock["nickels"]) {
+    let nickels = Math.floor(remainder / 5);
+    remainder -= 5 * nickels;
+  }
+  return remainder > 5;
+};
 class VendingMachine {
   constructor(item, coin) {
     this.itemStock = item;
@@ -42,13 +58,13 @@ class VendingMachine {
       let price = this.itemStock[itemCode].price;
 
       let change = smallestChange(
-        Math.ceil((insertedMoney - price) * 100) / 100,
-        this.coinStock
+        Math.ceil((insertedMoney - price) * 100) / 100
       );
-
-      return `Dispending ${
-        this.itemStock[itemCode].name
-      } with ${change} back as change`;
+      return checkCoinStock(insertedMoney - price, this.coinStock)
+        ? "Insufficient change"
+        : `Dispending ${
+            this.itemStock[itemCode].name
+          } with ${change} back as change`;
     }
   }
   restockCoin(coin, quantity) {
@@ -56,15 +72,15 @@ class VendingMachine {
       return "Machine only accepts quarters, dimes and nickels";
     } else {
       this.coinStock[coin] += quantity;
-      return "Restocked!";
+      return `Restocked ${quantity} ${coin}`;
     }
   }
   restockItem(itemCode, quantity) {
     if (!this.itemStock[itemCode]) {
-      return "Itemcode invalid";
+      return "Invalid itemcode";
     } else {
       this.itemStock[itemCode].stock += quantity;
-      return "Added stock!";
+      return `Restocked ${quantity} ${this.itemStock[itemCode].name}`;
     }
   }
   itemInventory() {
