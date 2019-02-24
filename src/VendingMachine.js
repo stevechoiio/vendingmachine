@@ -57,10 +57,10 @@ class VendingMachine {
     if (this.itemStock[itemCode].price < insertedMoney) {
       let price = this.itemStock[itemCode].price;
 
-      let change = smallestChange(
+      let change = this.smallestChange(
         Math.ceil((insertedMoney - price) * 100) / 100
       );
-      return checkCoinStock(insertedMoney - price, this.coinStock)
+      return this.checkCoinStock(insertedMoney - price, this.coinStock)
         ? "Insufficient change"
         : `Dispending ${
             this.itemStock[itemCode].name
@@ -100,6 +100,44 @@ class VendingMachine {
       return acc;
     }, []);
     return "Coin Inventory: " + list.join(", ");
+  }
+  smallestChange(change) {
+    let remainder = change * 100;
+    let result = [];
+    if (Math.floor(remainder / 25)) {
+      let quarters = Math.floor(remainder / 25);
+      result.push(`${quarters} quarters`);
+
+      remainder -= 25 * quarters;
+    }
+    if (Math.floor(remainder / 10) >= 1) {
+      let dimes = Math.floor(remainder / 10);
+      result.push(`${dimes} dimes`);
+      remainder -= 10 * dimes;
+    }
+    if (Math.floor(remainder / 5) >= 1) {
+      let nickels = Math.floor(remainder / 5);
+      result.push(`${nickels} nickels`);
+      remainder -= 5 * nickels;
+    }
+    return result.join(", ");
+  }
+
+  checkCoinStock(change, coinStock) {
+    let remainder = change * 100;
+    if (Math.floor(remainder / 25) <= coinStock["quarters"]) {
+      let quarters = Math.floor(remainder / 25);
+      remainder -= 25 * quarters;
+    }
+    if (Math.floor(remainder / 10) <= coinStock["dimes"]) {
+      let dimes = Math.floor(remainder / 10);
+      remainder -= 10 * dimes;
+    }
+    if (Math.floor(remainder / 5) <= coinStock["nickels"]) {
+      let nickels = Math.floor(remainder / 5);
+      remainder -= 5 * nickels;
+    }
+    return remainder > 5;
   }
 }
 
