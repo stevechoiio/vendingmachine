@@ -2,12 +2,12 @@ const itemStock = {
   A1: {
     name: "Coca-Cola",
     price: 2.75,
-    stock: false
+    stock: 0
   },
   A2: {
     name: "Diet Coca-Cola",
     price: 2.45,
-    stock: true
+    stock: 32
   }
 };
 

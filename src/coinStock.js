@@ -4,4 +4,4 @@ const coinStock = {
   nickels: 12
 };
 
-module.export = coinStock;
+module.exports = coinStock;
