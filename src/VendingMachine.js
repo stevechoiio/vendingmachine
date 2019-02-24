@@ -20,7 +20,8 @@ class VendingMachine {
     }
     if (this.itemStock[itemCode].price < insertedMoney) {
       let price = this.itemStock[itemCode].price;
-      let change = Math.round(insertedMoney - price, 2);
+      let change = parseFloat(insertedMoney - price).toFixed(2);
+
       return `Dispending ${
         this.itemStock[itemCode].name
       } with $${change} back as change`;
