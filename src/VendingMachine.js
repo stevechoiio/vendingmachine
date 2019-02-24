@@ -84,10 +84,22 @@ class VendingMachine {
     }
   }
   itemInventory() {
-    return this.itemStock;
+    let list = Object.keys(this.itemStock).reduce((acc, cur) => {
+      let description = `${this.itemStock[cur].name} for $${
+        this.itemStock[cur].price
+      }, and there are  ${this.itemStock[cur].stock} in stock`;
+      acc.push(description);
+      return acc;
+    }, []);
+    return "Item Inventory: " + list.join(", ");
   }
   coinInventory() {
-    return this.coinStock;
+    let list = Object.keys(this.coinStock).reduce((acc, cur) => {
+      let coins = `${this.coinStock[cur]} ${cur}`;
+      acc.push(coins);
+      return acc;
+    }, []);
+    return "Coin Inventory: " + list.join(", ");
   }
 }
 

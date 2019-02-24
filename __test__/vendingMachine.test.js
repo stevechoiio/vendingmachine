@@ -79,10 +79,14 @@ describe("Vending Machine", () => {
   });
   describe("Printing Inventory", () => {
     it("should print the item stock", () => {
-      expect(DefaultVendingMachine.itemInventory()).toEqual(itemStock);
+      expect(DefaultVendingMachine.itemInventory()).toEqual(
+        "Item Inventory: Cola-Coca for $2.75, and there are  1 in stock, Fat Coca-Cola for $2.45, and there are  32 in stock, Pepsid for $1.3232123123123122e+28, and there are  0 in stock, Suprite for $2.45, and there are  1 in stock, Water for $1.5, and there are  32 in stock, Dr.Qepper for $2, and there are  1 in stock, America Dry for $123.45, and there are  999 in stock, Iced Tee for $4.45, and there are  5 in stock, Parking Water for $2.05, and there are  3 in stock, Lemonaid for $1.45, and there are  0 in stock"
+      );
     });
     it("should print the coin stock", () => {
-      expect(DefaultVendingMachine.coinInventory()).toEqual(coinStock);
+      expect(DefaultVendingMachine.coinInventory()).toEqual(
+        "Coin Inventory: 151 quarters, 10 dimes, 12 nickels"
+      );
     });
   });
 });
