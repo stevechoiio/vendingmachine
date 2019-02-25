@@ -1,3 +1,3 @@
 # vendingmachine
 
-![Screenshot](/screenshots/a.png)
+![GitHub Logo](/screenshots/a.png)
