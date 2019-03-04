@@ -39,7 +39,7 @@ describe("Vending Machine", () => {
       });
       it("should dispense with multiple coins", () => {
         expect(DefaultVendingMachine.buy("A2", 4.55)).toEqual(
-          "Dispending Fat Coca-Cola with 8 quarters, 1 dimes back as change"
+          "Dispending Fat Coca-Cola with 1 toonies, 1 dimes back as change"
         );
       });
     });
@@ -85,7 +85,7 @@ describe("Vending Machine", () => {
     });
     it("should print the coin stock", () => {
       expect(DefaultVendingMachine.coinInventory()).toEqual(
-        "Coin Inventory: 151 quarters, 10 dimes, 12 nickels"
+        "Coin Inventory: 10 toonies, 23 loonies, 151 quarters, 10 dimes, 12 nickels"
       );
     });
   });

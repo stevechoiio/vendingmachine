@@ -1,41 +1,3 @@
-const smallestChange = change => {
-  let remainder = change * 100;
-  let result = [];
-  if (Math.floor(remainder / 25)) {
-    let quarters = Math.floor(remainder / 25);
-    result.push(`${quarters} quarters`);
-
-    remainder -= 25 * quarters;
-  }
-  if (Math.floor(remainder / 10) >= 1) {
-    let dimes = Math.floor(remainder / 10);
-    result.push(`${dimes} dimes`);
-    remainder -= 10 * dimes;
-  }
-  if (Math.floor(remainder / 5) >= 1) {
-    let nickels = Math.floor(remainder / 5);
-    result.push(`${nickels} nickels`);
-    remainder -= 5 * nickels;
-  }
-  return result.join(", ");
-};
-
-const checkCoinStock = (change, coinStock) => {
-  let remainder = change * 100;
-  if (Math.floor(remainder / 25) <= coinStock["quarters"]) {
-    let quarters = Math.floor(remainder / 25);
-    remainder -= 25 * quarters;
-  }
-  if (Math.floor(remainder / 10) <= coinStock["dimes"]) {
-    let dimes = Math.floor(remainder / 10);
-    remainder -= 10 * dimes;
-  }
-  if (Math.floor(remainder / 5) <= coinStock["nickels"]) {
-    let nickels = Math.floor(remainder / 5);
-    remainder -= 5 * nickels;
-  }
-  return remainder > 5;
-};
 class VendingMachine {
   constructor(item, coin) {
     this.itemStock = item;
@@ -104,6 +66,17 @@ class VendingMachine {
   smallestChange(change) {
     let remainder = change * 100;
     let result = [];
+    if (Math.floor(remainder / 200)) {
+      let toonies = Math.floor(remainder / 200);
+      result.push(`${toonies} toonies`);
+
+      remainder -= 200 * toonies;
+    }
+    if (Math.floor(remainder / 100)) {
+      let loonies = Math.floor(remainder / 100);
+      result.push(`${loonies} loonies`);
+      remainder -= 100 * loonies;
+    }
     if (Math.floor(remainder / 25)) {
       let quarters = Math.floor(remainder / 25);
       result.push(`${quarters} quarters`);
