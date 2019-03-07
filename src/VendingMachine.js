@@ -31,7 +31,7 @@ class VendingMachine {
   }
   restockCoin(coin, quantity) {
     if (!this.coinStock.hasOwnProperty(coin)) {
-      return "Machine only accepts quarters, dimes and nickels";
+      return "Machine only accepts toonies, loonies, quarters, dimes and nickels";
     } else {
       this.coinStock[coin] += quantity;
       return `Restocked ${quantity} ${coin}`;

@@ -25,4 +25,4 @@ Run Test
 
 ## Reflections
 
-I have learned the benefits of test driven development.
+I have learned the pros and cons of test driven development.
