@@ -8,7 +8,7 @@ Created a vending machine class using Javascript ES5. The method I used for deve
 
 ## Test Result
 
-![GitHub Logo](/screenshots/testresults_screenshot.png)
+![GitHub Logo](/screenshots/testresults_screenshot1.png)
 
 ## Technologies Used
 
